@@ -1,53 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Connect With Me</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shreshth Dubey | Portfolio</title>
+
+<style>
+:root {
+    --glass: rgba(255,255,255,0.62);
+    --border: rgba(255,255,255,0.45);
+    --text: #0f172a;
+    --muted: #475569;
+    --accent: #4f46e5;
+}
+
+/* RESET */
+* {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text);
+    background: #f8fafc;
+    overflow-x: hidden;
+}
+
+/* 🌊 Floating gel background */
+.bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.blob {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle at 30% 30%, #c7d2fe, #fbcfe8);
+    opacity: 0.45;
+    filter: blur(90px);
+    border-radius: 50%;
+    animation: float 18s ease-in-out infinite;
+}
+
+.blob:nth-child(1) { top: -120px; left: -120px; }
+.blob:nth-child(2) { bottom: -140px; right: -100px; animation-delay: -6s; }
+.blob:nth-child(3) { top: 40%; left: 60%; width: 300px; height: 300px; animation-delay: -12s; }
+
+@keyframes float {
+    0%,100% { transform: translate(0,0); }
+    50% { transform: translate(30px,-40px); }
+}
+
+/* LAYOUT */
+.container {
+    display: flex;
+    min-height: 100vh;
+    padding: 36px;
+    gap: 32px;
+}
+
+.panel {
+    flex: 1;
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 48px;
+    transition: transform .45s ease, box-shadow .45s ease;
+}
+
+.panel:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 50px 100px rgba(0,0,0,.14);
+}
+
+/* ABOUT */
+.profile-card {
+    max-width: 540px;
+    position: relative;
+}
+
+.profile-card::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 30px;
+    background: linear-gradient(120deg, #6366f1, #ec4899, #22d3ee);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity .45s ease;
+}
+
+.profile-card:hover::before {
+    opacity: .35;
+}
+
+.avatar {
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255,255,255,.95);
+    margin-bottom: 28px;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.role {
+    font-size: 13px;
+    letter-spacing: .1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 26px;
+}
+
+p {
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 22px;
+}
+
+/* SKILLS */
+.skills {
+    margin: 28px 0 26px;
+}
+
+.skills h3,
+.certification h3 {
+    font-size: 15px;
+    margin-bottom: 14px;
+    font-weight: 600;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill {
+    padding: 8px 14px;
+    font-size: 13px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.75);
+    border: 1px solid var(--border);
+}
+
+/* CERTIFICATION */
+.certification {
+    margin-bottom: 26px;
+}
+
+.badge-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255,255,255,.85);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 16px;
+}
+
+.badge-wrapper img {
+    width: 120px;
+    height: auto;
+}
+
+.badge-text {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 220px;
+}
+
+.badge-text a {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    position: relative;
+}
+
+.badge-text a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width .3s ease;
+}
+
+.badge-text a:hover::after {
+    width: 100%;
+}
+
+/* LINKS */
+.links a {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--accent);
+    position: relative;
+}
+
+.links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width .3s ease;
+}
+
+.links a:hover::after {
+    width: 100%;
+}
+
+/* FORM */
+.form-header h2 {
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+
+.form-header p {
+    font-size: 14.5px;
+    color: var(--muted);
+    margin-bottom: 18px;
+}
+
+iframe {
+    width: 100%;
+    height: calc(100% - 120px);
+    border: none;
+    border-radius: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
     .container {
-      max-width: 900px;
-      margin: 40px auto;
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    h1 {
-      text-align: center;
+        flex-direction: column;
+        padding: 22px;
     }
     iframe {
-      width: 100%;
-      height: 700px;
-      border: none;
+        height: 620px;
     }
-    .note {
-      text-align: center;
-      margin-top: 15px;
-      color: #555;
-    }
-  </style>
+}
+</style>
 </head>
+
 <body>
 
-  <div class="container">
-    <h1>Let’s Stay Connected</h1>
-    <p>Please fill in the form below.</p>
+<!-- Floating gel background -->
+<div class="bg">
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+</div>
 
-    <iframe 
-      src="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAO__TfLHtdUME1XRDhOWE5ENVhVR0FZQ0lFNzc2N1JJOS4u&embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen>
-    </iframe>
+<div class="container">
 
-    <p class="note">
-      Thank you for taking a moment to connect 🤝
-    </p>
-  </div>
+    <!-- ABOUT ME -->
+    <section class="panel">
+        <div class="profile-card">
+            <img src="https://i.postimg.cc/wxJdbQGK/1763016603325.png" class="avatar" alt="Shreshth Dubey">
+
+            <h1>Shreshth Dubey</h1>
+            <div class="role">Business & Functional Analyst · PMI-ACP®</div>
+
+            <p>
+                I work at the intersection of <strong>business processes and technology</strong>,
+                with a strong foundation in air cargo and enterprise systems.
+                My journey evolved into application ownership,
+                delivery, and continuous improvement.
+            </p>
+
+            <p>
+                I focus on clarity, system behavior, and practical outcomes, translating real business needs into technology that works
+                in high-pressure operational environments.
+            </p>
+
+            <!-- SKILLS -->
+            <div class="skills">
+                <h3>Core Skills</h3>
+                <div class="skill-list">
+                    <span class="skill">Agile Delivery (PMI-ACP)</span>
+                    <span class="skill">Business Analysis</span>
+                    <span class="skill">ERP & Enterprise Systems</span>
+                    <span class="skill">Air Cargo & Aviation Domain</span>
+                    <span class="skill">SDLC & Application Ownership</span>
+                    <span class="skill">Stakeholder & PMO Collaboration</span>
+                    <span class="skill">Process Improvement</span>
+                </div>
+            </div>
+
+            <!-- CERTIFICATION -->
+            <div class="certification">
+                <h3>Certification</h3>
+
+                <div class="badge-wrapper">
+                    <img
+                      src="https://i.postimg.cc/fbZKDDwf/pmi-agile-certified-practitioner-pmi-acp.png"
+                      alt="PMI-ACP Badge">
+
+                    <div class="badge-text">
+                        <strong>PMI-ACP®</strong><br>
+                        Agile Certified Practitioner
+                        <br>
+                        <a href="https://www.credly.com/badges/220e4635-944f-45cb-aa29-d7ed204688e5/public_url"
+                           target="_blank">
+                            Verify on Credly →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LINKEDIN -->
+            <div class="links">
+                <a href="https://www.linkedin.com/in/shreshthdubey/" target="_blank">
+                    View LinkedIn →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="panel">
+        <div class="form-header">
+            <h2>Get in Touch</h2>
+            <p>Leave your details or message — I’ll respond thoughtfully.</p>
+        </div>
+
+        <iframe
+            src="https://forms.office.com/r/uazikFx3DS"
+            loading="lazy"
+            allowfullscreen>
+        </iframe>
+    </section>
+
+</div>
 
 </body>
 </html>
